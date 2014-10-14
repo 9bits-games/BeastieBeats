@@ -12,7 +12,7 @@ public class Commander
         CommandHistory = new List<Command>();
     }
 
-    public void addCommand(Command command) {
+    public void AddCommand(Command command) {
         command.execute();
 
         this.CommandHistory.Add(command);
