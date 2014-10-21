@@ -4490,7 +4490,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1402661273}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.17256165, y: .850000024, z: -3}
+  m_LocalPosition: {x: -4.30191326, y: .850000024, z: -3}
   m_LocalScale: {x: 1, y: 1.70000005, z: 1}
   m_Children: []
   m_Father: {fileID: 1697088001}
@@ -4593,6 +4593,7 @@ Transform:
   - {fileID: 1530637953}
   - {fileID: 308167815}
   - {fileID: 1349691562}
+  - {fileID: 1774917759}
   - {fileID: 1697088001}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -4675,7 +4676,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1530637948}
-  m_LocalRotation: {x: .130526215, y: 0, z: 0, w: .991444886}
+  m_LocalRotation: {x: .0871557519, y: 0, z: 0, w: .99619472}
   m_LocalPosition: {x: 0, y: 2.15807247, z: -7.98517036}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -4712,7 +4713,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1697088001
 Transform:
   m_ObjectHideFlags: 0
@@ -4737,7 +4738,7 @@ Transform:
   - {fileID: 1812489258}
   - {fileID: 420040747}
   m_Father: {fileID: 1472854475}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &1762201389
 GameObject:
   m_ObjectHideFlags: 0
@@ -4808,6 +4809,50 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1762201389}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1774917758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1774917759}
+  - 114: {fileID: 1774917760}
+  m_Layer: 0
+  m_Name: Crowd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1774917759
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1774917758}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1472854475}
+  m_RootOrder: 3
+--- !u!114 &1774917760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1774917758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37983d8ae1b964bb3a8c2d9ede040748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreManager: {fileID: 1866322277}
+  maximunNumberOfPersons: 20
+  apearingTime: 3
+  personAppearPosition: 7
+  expectedFanCrowdCount: 0
 --- !u!1 &1812489257
 GameObject:
   m_ObjectHideFlags: 0
@@ -4889,6 +4934,7 @@ GameObject:
   - 114: {fileID: 1866322276}
   - 114: {fileID: 1866322275}
   - 114: {fileID: 1866322277}
+  - 114: {fileID: 1866322278}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -4951,6 +4997,22 @@ MonoBehaviour:
   ScorePerGoodNote: 100
   ScorePerBadNote: 70
   ScorePerNotPlayNote: 120
+--- !u!114 &1866322278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1866322273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f6f72ce17e99f4ba1ce4fe82b1bd6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolingItems:
+  - prefab: {fileID: 100000, guid: 9808d743b33b4432a98458d38f69c8c5, type: 2}
+    amount: 30
+  defaultPoolAmount: 10
+  poolExpand: 1
 --- !u!1 &1881242806
 GameObject:
   m_ObjectHideFlags: 0
