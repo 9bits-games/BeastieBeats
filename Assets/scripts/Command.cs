@@ -1,12 +1,26 @@
 ﻿using UnityEngine;
 using System;
 
+/**
+ * Base class for the command pattern.
+ * The class Commander is the responsible of executing all concrete instances of Command.
+ * All other commands must inherit Command and override excecute() if needed.
+ * The recommended way to override executed is:
+ * public override void execute() {
+ *     base.execute();
+ *     //Your code...
+ * }
+ * 
+ */
 public class Command
 {
+    // True if the commnad was executed by the Commander.
+    public bool Executed { get {return executed;} }
+ 
     protected bool executed;
     protected float execTime;
-    public bool Executed { get {return executed;} }
 
+    //Creates a non executed command.
     public Command()
     {
         executed = false;
@@ -20,8 +34,13 @@ public class Command
     }
 }
 
+/**
+ * The command to play a Note in the Game.
+ * It triggers the event NotePlayed when executed.
+ */
 public class PlayNoteCommand : Command
 {
+    // This events is triggered when a note is played by the user.
     public delegate void NotePlayed(PlayNoteCommand playNoteCommand);
     public static event NotePlayed OnNotePlayed;
 

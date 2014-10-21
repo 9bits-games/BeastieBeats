@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * The Scene Controller of the main scene.
+ * 
+ * For now is being used to connect the event producers with its listeners.
+ */
 public class MainSC : SceneController {
 
     Commander commander;
@@ -8,19 +13,20 @@ public class MainSC : SceneController {
     GUIManager guiManager;
     ScoreManager scoreManager;
 
-	// Use this for initialization
 	void Start () {
         commander = new Commander();
 
         track = this.GetComponentInChildren<Track>();
         track.Play();
 
+        //Connecting the ScoreManager with the Track
         scoreManager = this.GetComponent<ScoreManager>();
         track.OnNoteWellPlayed += scoreManager.OnNoteWellPlayed;
         track.OnNoteBadPlayed += scoreManager.OnNoteBadPlayed;
         track.OnNoteNotPlayed += scoreManager.OnNoteNotPlayed;
 //        scoreManager.Set(track);
 
+        //Connecting the GUIManager with the Track
         guiManager = this.GetComponent<GUIManager>();
         guiManager.Set(commander, scoreManager);
         track.OnNoteAhead += guiManager.NoteAhead;
@@ -28,10 +34,10 @@ public class MainSC : SceneController {
         PlayNoteCommand.OnNotePlayed += OnNotePlayed;
     }
 	
-	// Update is called once per frame
 	void Update () {
 	}
 
+    //When a note is played on the GUI we play it on the track.
     private void OnNotePlayed(PlayNoteCommand playNoteCommand) {
         track.PlayNote(playNoteCommand.Note);
     }

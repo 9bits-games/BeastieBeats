@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * Controlls the Camera.
+ */
 public class CameraController : MonoBehaviour9Bits {
 
     public float wL = 2f;
@@ -13,13 +16,12 @@ public class CameraController : MonoBehaviour9Bits {
 
     private Vector3 initPos;
 
-	// Use this for initialization
 	void Start () {
         initPos = transform.position;
 	}
 	
-	// Update is called once per frame
 	void Update () {
+        //Camera waving movement
         if (player) transform.LookAt(player.position + lookAtOffset);
         
         transform.position = initPos + new Vector3(

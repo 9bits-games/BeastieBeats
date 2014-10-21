@@ -1,6 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
+/**
+ * A Musical Note, with its name and color.
+ * All posible Notes can be obtained via static, Note instancing is not allowed.
+ **/
 public class Note {
     public static Note DO = new Note {Name="Do", Color = Color.red};
     public static Note RE = new Note {Name="Re", Color = Color.blue};
@@ -12,4 +16,6 @@ public class Note {
 
     public string Name;
     public Color Color;
+
+    private Note() {}
 }
