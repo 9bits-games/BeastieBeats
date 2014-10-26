@@ -39,8 +39,7 @@ public class SpriteSheetNG : MonoBehaviour9Bits
 
         if (autoPlay) Play();
 
-        _size = new Vector2 (1.0f / _uvTieX ,
-            1.0f / _uvTieY);
+        _size = new Vector2 (1.0f / _uvTieX, 1.0f / _uvTieY);
 
         _myRenderer = renderer;
 
@@ -53,15 +52,25 @@ public class SpriteSheetNG : MonoBehaviour9Bits
     {
         if (isPlaying) {
             playTime += Time.deltaTime;
+//            int totalFrames = _uvTieX * _uvTieY;
+            int index = (int) (playTime * _fps);
+
+            int y = index % _uvTieY;
+            int x = index - y * _uvTieX;
+
+            Debug.Log(string.Format("X: {0}, Y: {1}", x, y));
+
+            Vector2 offset = new Vector2(x * _size.x, _size.y * y);
+
+            _myRenderer.material.SetTextureOffset("_MainTex", offset);
+/*            
             int index = (int)(playTime * _fps) % (_uvTieX * _uvTieY);
 
             if (index != _lastIndex) {
-                Vector2 offset = new Vector2(iX * _size.x,
-                                 1 - (_size.y * iY));
+                Vector2 offset = new Vector2(iX * _size.x, 1 - (_size.y * iY));
                 iX++;
                 if (iX / _uvTieX == 1) {
-                    if (_uvTieY != 1)
-                        iY++;
+                    if (_uvTieY != 1) iY++;
                     iX = 0;
                     if (iY / _uvTieY == 1) {
                         iY = 1;
@@ -71,6 +80,7 @@ public class SpriteSheetNG : MonoBehaviour9Bits
                 _myRenderer.material.SetTextureOffset("_MainTex", offset);
                 _lastIndex = index;
             }
+*/
         }
     }
 }
