@@ -16,6 +16,10 @@ public class GUIManager : MonoBehaviour9Bits {
     public float marginTop = 0.1f;
     //The size the buttons in screen percentage.
     public float buttonSize = 0.2f;
+    //Texture of a button
+    public Texture2D buttonImage;
+    //Texture of the note ahead effect
+    public Texture2D noteAheadImage;
 
     //The list of buttons to be presented on the board.
     ButtonNote[] buttonNotes = {
@@ -70,7 +74,7 @@ public class GUIManager : MonoBehaviour9Bits {
         Rect GUIRect = new Rect(0f, Screen.height * (1f - bgSize), Screen.width, Screen.height * bgSize);
 
         //Draw the board
-        GUI.Box(GUIRect, "");
+//        GUI.Box(GUIRect, "");
 
         //Drawing the Buttons
         //Buttons size
@@ -87,7 +91,7 @@ public class GUIManager : MonoBehaviour9Bits {
             );
 
             //Here we handle the input and effects:
-            buttonNote.OnGUI(btn_r);
+            buttonNote.OnGUI(btn_r, buttonImage, noteAheadImage);
 
             count++;
         }
@@ -119,18 +123,19 @@ public class GUIManager : MonoBehaviour9Bits {
         public float currentEffectTime;
 
         //The extra size of the effect over the button, relative to the size of the button.
-        const float relativeSize = 0.5f;
+        const float relativeSize = 4f;
 
         //Plays the effect animation.
-        public void OnGUI(Rect area) {
+        public void OnGUI(Rect area, Texture2D noteAheadImage) {
             if (currentEffectTime <= timeAhead) {
-                Rect effectRect = new Rect();
+                Rect effectRect;
 
-                float percentage = 1f - currentEffectTime / timeAhead;
-                effectRect.width = area.width + percentage * relativeSize * area.width;
-                effectRect.height = area.height + percentage * relativeSize * area.height;
-                effectRect.center = area.center;
-                GUI.Box(effectRect, "");
+                float sizeFactor = (1f - currentEffectTime / timeAhead) * relativeSize + 1f;
+                sizeFactor *= 0.4f; // The texture needs to be 0.4x smaller
+                effectRect = Util.InflateRect(area, sizeFactor * area.width, sizeFactor * area.height);
+//                GUI.Box(effectRect, "");
+
+                GUI.DrawTexture(effectRect, noteAheadImage);
             }
         }
 
@@ -165,10 +170,17 @@ public class GUIManager : MonoBehaviour9Bits {
         }
 
         //This will animate the effects and check for user input.
-        public void OnGUI(Rect area) {
-            if(GUI.Button(area, note.Name)) playNote();
+        public void OnGUI(Rect area, Texture2D buttonImage, Texture2D noteAheadImage) {
+            Color prevColor = GUI.color;
+            GUI.color = note.Color;
+            GUI.DrawTexture(Util.InflateRectByFactor(area, 2f, 2f), buttonImage);
+            noteAheadEffects.ForEach(effect => effect.OnGUI(area, noteAheadImage));
+            GUI.color = prevColor;
 
-            noteAheadEffects.ForEach(effect => effect.OnGUI(area));
+            //if(GUI.Button(area, note.Name)) playNote();
+            if (Event.current.type == EventType.MouseUp && area.Contains(Event.current.mousePosition)) {
+                playNote();
+            }
         }
 
         //This will check for user input
