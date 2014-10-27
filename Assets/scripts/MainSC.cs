@@ -13,7 +13,10 @@ public class MainSC : SceneController {
     GUIManager guiManager;
     ScoreManager scoreManager;
 
+    bool paused;
+
 	void Start () {
+        paused = false;
         commander = new Commander();
 
         track = this.GetComponentInChildren<Track>();
@@ -35,7 +38,21 @@ public class MainSC : SceneController {
     }
 	
 	void Update () {
+        if (Input.GetButtonDown("Pause")) Pause();
 	}
+
+    public void Pause() {
+        if (paused) {
+            Time.timeScale = 1f;
+            track.Play();
+            paused = false;
+        } else {
+            Time.timeScale = 0f;
+            track.Pause();
+            paused = true;
+        }
+        Debug.Log("Time scale " + Time.timeScale);
+    }
 
     //When a note is played on the GUI we play it on the track.
     private void OnNotePlayed(PlayNoteCommand playNoteCommand) {

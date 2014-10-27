@@ -69,8 +69,9 @@ public class PersonController : MonoBehaviour9Bits {
 
     void Update () {
         if (!isInterested) {
-            float absWalkSpeed = Mathf.Abs(WalkSpeed);
-            transform.position += new Vector3(WalkSpeed, 0f, 0f);
+            float dtWalkSpeed = WalkSpeed * Time.deltaTime;
+            float absWalkSpeed = Mathf.Abs(dtWalkSpeed);
+            transform.position += new Vector3(dtWalkSpeed, 0f, 0f);
 
             if (distanceToInterestPosition > 0) {
                 distanceToInterestPosition -= absWalkSpeed;
