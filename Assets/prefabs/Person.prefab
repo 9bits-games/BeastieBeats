@@ -82,7 +82,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5363fc0f9758f46618f46e2a5b2f945e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: .0199999996
+  baseWalkSpeed: .00999999978
   interestPosition: 0
   isInterested: 0
   distanceToDispose: 0

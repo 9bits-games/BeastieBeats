@@ -60,9 +60,9 @@ public class CrowdController : MonoBehaviour9Bits {
 
         //Initializing the controller
         PersonController personController = person.GetComponent<PersonController>();
-        personController.walkSpeed *= direction;
-        personController.OnReachedInterestPosition += OnPersonReachedInterestPosition;
         personController.Initialize();
+        personController.WalkSpeed *= direction;
+        personController.OnReachedInterestPosition += OnPersonReachedInterestPosition;
 
 //        persons.Add(personController);
     }

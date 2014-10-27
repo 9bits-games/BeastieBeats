@@ -7,12 +7,14 @@ public class PersonController : MonoBehaviour9Bits {
     public delegate void ReachedInterestPosition(PersonController personController);
     public event ReachedInterestPosition OnReachedInterestPosition;
 
-    public float walkSpeed = 0.1f;
+    public float baseWalkSpeed = 0.01f;
     public float interestPosition;
     public bool isInterested;
     public float distanceToDispose;
     public Texture walkingSS;
     public Texture ApplauseSS;
+
+    public float WalkSpeed { get; set; }
 
     public AudioClip buSound;
 
@@ -60,14 +62,15 @@ public class PersonController : MonoBehaviour9Bits {
             distanceToDispose = 14f;
         }
 
+        WalkSpeed = baseWalkSpeed;
         distanceToInterestPosition = interestPosition;
         LooseInterest(false);
     }
 
     void Update () {
         if (!isInterested) {
-            float absWalkSpeed = Mathf.Abs(walkSpeed);
-            transform.position += new Vector3(walkSpeed, 0f, 0f);
+            float absWalkSpeed = Mathf.Abs(WalkSpeed);
+            transform.position += new Vector3(WalkSpeed, 0f, 0f);
 
             if (distanceToInterestPosition > 0) {
                 distanceToInterestPosition -= absWalkSpeed;
