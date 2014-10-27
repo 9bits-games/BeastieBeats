@@ -97,9 +97,8 @@ public class GUIManager : MonoBehaviour9Bits {
         }
 
         //Only for debug:
-        GUI.Box(new Rect(10, 10, 100, 40), String.Format("T: {0}", scoreManager.TotalScore));
-        GUI.Box(new Rect(10, 50, 100, 40), String.Format("E: {0}", scoreManager.EmotionMeter));
-
+        GUI.Box(new Rect((Screen.width - 170)/2, 10, 170, 25), String.Format("T: {0}, E: {1}, C: {2}",
+            scoreManager.TotalScore, scoreManager.EmotionMeter, scoreManager.ComboCount));
 		
 	}
 

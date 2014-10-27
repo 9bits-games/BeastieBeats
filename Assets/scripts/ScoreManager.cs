@@ -21,6 +21,14 @@ public class ScoreManager : MonoBehaviour9Bits
     public int TotalScore { get; private set; }
     // The meassurement of the emotionometer.
     public int EmotionMeter { get; private set; }
+    // The meassurement of the emotionometer.
+    public int ComboCount {
+        get { return comboCount; }
+        private set {
+            comboCount = value;
+            CheckCombo();
+        }
+    }
 
     // Upper limit of the emotionometer.
     public int MaxEmotionMeter = 1000;
@@ -33,32 +41,97 @@ public class ScoreManager : MonoBehaviour9Bits
     // The amount of points for let a note pass in the track without play it.
     public int ScorePerNotPlayNote = 120;
 
+    public int GoodComboStreak = 3;
+    public int CoolComboStreak = 7;
+    public int GreatComboStreak = 15;
+    public int AwesomeComboStreak = 20;
+
+    public AudioClip GoodComboSound;
+    public AudioClip CoolComboSound;
+    public AudioClip GreatComboSound;
+    public AudioClip AwesomeComboSound;
+
+    private int comboCount;
+    private AudioSource SoundEffect;
+
+    private int comboLevel;
+
     void Start() {
         EmotionMeter = InitialEmotionMeter;
+        comboCount = 0;
+        comboLevel = 0;
+
+        SoundEffect = GetComponent<AudioSource>();
+        SoundEffect.priority = 0;
+        SoundEffect.minDistance = float.MaxValue;
+
     }
 //    void Update() {}
+
+    public int CalculateMaximunScoreOfTrack(Track track) {
+        return track.NotesCount * ScorePerGoodNote;
+    }
 
     //Listener of OnNoteWellPlayed
     public void OnNoteWellPlayed(Note note, float trackTime, float playTime) {
         TotalScore += ScorePerGoodNote;
         EmotionMeter = Mathf.Min(EmotionMeter + ScorePerGoodNote, MaxEmotionMeter);
         Debug.Log(String.Format("Note Well Played {0}", note.Name));
+
+        ComboCount++;
     }
 
     //Listener of OnNoteBadPlayed
     public void OnNoteBadPlayed(Note note, float playTime) {
-//        TotalScore -= ScorePerBadNote;
+        TotalScore -= ScorePerBadNote;
         EmotionMeter -= ScorePerBadNote;
         checkEmotionMeter();
         Debug.Log(String.Format("Note Bad Played {0}", note.Name));
+        ComboCount = 0;
     }
 
     //Listener of OnNoteNotPlayed
     public void OnNoteNotPlayed(Note note) {
-//        TotalScore -= ScorePerNotPlayNote;
+        TotalScore -= ScorePerNotPlayNote;
         EmotionMeter -= ScorePerNotPlayNote;
         checkEmotionMeter();
         Debug.Log(String.Format("Note Not Played {0}", note.Name));
+        ComboCount = 0;
+    }
+
+    public void CheckCombo() {
+        int toComboLVL = -1;
+
+        if(ComboCount >= AwesomeComboStreak) {
+            if(comboLevel < 4) {
+                SoundEffect.clip = AwesomeComboSound;
+                toComboLVL = 4;
+            };
+        } else if(ComboCount >= GreatComboStreak) {
+            if(comboLevel < 3) {
+                SoundEffect.clip = GreatComboSound;
+                toComboLVL = 3;
+            };
+        } if(ComboCount >= CoolComboStreak) {
+            if(comboLevel < 2) {
+                SoundEffect.clip = CoolComboSound;
+                toComboLVL = 2;
+            };
+        } else if(ComboCount >= GoodComboStreak) {
+            if(comboLevel < 1) {
+                SoundEffect.clip = GoodComboSound;
+                toComboLVL = 1;
+            };
+        } else {
+            comboLevel = 0;
+        }
+
+        if(toComboLVL > 0) {
+            SoundEffect.Play();
+            comboLevel = toComboLVL;
+        }
+        Debug.Log("Combo Lvl " + comboLevel);
+
     }
 
     //Checks if the emotionometer is below 0 to trigger the EmotionBelowLimit event.

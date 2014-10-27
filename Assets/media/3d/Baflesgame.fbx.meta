@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: 1339b2756087c4c48be4b857e3a82514
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: anillo_azul
+    100002: anillo_azul_2
+    100004: anillo_azul_3
+    100006: //RootNode
+    100008: malla_bafle
+    100010: malla_bafle_2
+    100012: malla_bafle_3
+    100014: Nulo_
+    100016: Nulo__1
+    100018: Nulo__2
+    100020: parte_blanca
+    100022: parte_blanca_2
+    100024: parte_blanca_3
+    100026: trian_b
+    100028: trian_b_2
+    100030: trian_b_3
+    100032: trian_negro
+    100034: trian_negro_2
+    100036: trian_negro_3
+    400000: anillo_azul
+    400002: anillo_azul_2
+    400004: anillo_azul_3
+    400006: //RootNode
+    400008: malla_bafle
+    400010: malla_bafle_2
+    400012: malla_bafle_3
+    400014: Nulo_
+    400016: Nulo__1
+    400018: Nulo__2
+    400020: parte_blanca
+    400022: parte_blanca_2
+    400024: parte_blanca_3
+    400026: trian_b
+    400028: trian_b_2
+    400030: trian_b_3
+    400032: trian_negro
+    400034: trian_negro_2
+    400036: trian_negro_3
+    2300000: anillo_azul
+    2300002: anillo_azul_2
+    2300004: anillo_azul_3
+    2300006: malla_bafle
+    2300008: malla_bafle_2
+    2300010: malla_bafle_3
+    2300012: parte_blanca
+    2300014: parte_blanca_2
+    2300016: parte_blanca_3
+    2300018: trian_b
+    2300020: trian_b_2
+    2300022: trian_b_3
+    2300024: trian_negro
+    2300026: trian_negro_2
+    2300028: trian_negro_3
+    3300000: anillo_azul
+    3300002: anillo_azul_2
+    3300004: anillo_azul_3
+    3300006: malla_bafle
+    3300008: malla_bafle_2
+    3300010: malla_bafle_3
+    3300012: parte_blanca
+    3300014: parte_blanca_2
+    3300016: parte_blanca_3
+    3300018: trian_b
+    3300020: trian_b_2
+    3300022: trian_b_3
+    3300024: trian_negro
+    3300026: trian_negro_2
+    3300028: trian_negro_3
+    4300000: anillo_azul
+    4300002: parte_blanca
+    4300004: trian_b
+    4300006: malla_bafle
+    4300008: trian_negro
+    4300010: anillo_azul_2
+    4300012: parte_blanca_2
+    4300014: trian_b_2
+    4300016: malla_bafle_2
+    4300018: trian_negro_2
+    4300020: anillo_azul_3
+    4300022: parte_blanca_3
+    4300024: trian_b_3
+    4300026: malla_bafle_3
+    4300028: trian_negro_3
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

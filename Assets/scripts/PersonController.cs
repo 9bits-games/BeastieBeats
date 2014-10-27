@@ -14,6 +14,17 @@ public class PersonController : MonoBehaviour9Bits {
     public Texture walkingSS;
     public Texture ApplauseSS;
 
+    public AudioClip buSound;
+
+    private AudioSource soundEffect;
+
+    public void Start() {
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+
+        soundEffect = audioSources[0];
+        soundEffect.clip = buSound;
+    }
+
     public void PickRandomInterestPosition(float min, float max) {
         interestPosition = Random.Range(min, max);
     }
@@ -23,9 +34,12 @@ public class PersonController : MonoBehaviour9Bits {
         changeSpriteSheet(ApplauseSS);
     }
 
-    public void LooseInterest() {
+    public void LooseInterest(bool reproduceSound = true) {
         isInterested = false;
         changeSpriteSheet(walkingSS);
+        if (reproduceSound && soundEffect) {
+            soundEffect.Play();
+        }
     }
 
     private void changeSpriteSheet(Texture texture, bool play = true) {
@@ -47,7 +61,7 @@ public class PersonController : MonoBehaviour9Bits {
         }
 
         distanceToInterestPosition = interestPosition;
-        LooseInterest();
+        LooseInterest(false);
     }
 
     void Update () {

@@ -10,11 +10,11 @@ public class SpriteSheetNG : MonoBehaviour9Bits
     public int _fps = 10;
     public bool autoPlay = true;
 
-    private float iX=0;
-    private float iY=1;
+//    private float iX=0;
+//    private float iY=1;
     private Vector2 _size;
     private Renderer _myRenderer;
-    private int _lastIndex = -1;
+//    private int _lastIndex = -1;
 
     private bool isPlaying;
     private float playTime;
@@ -55,10 +55,8 @@ public class SpriteSheetNG : MonoBehaviour9Bits
 //            int totalFrames = _uvTieX * _uvTieY;
             int index = (int) (playTime * _fps);
 
-            int y = index % _uvTieY;
-            int x = index - y * _uvTieX;
-
-            Debug.Log(string.Format("X: {0}, Y: {1}", x, y));
+            int y = index / _uvTieY % _uvTieY;
+            int x = index % _uvTieX;
 
             Vector2 offset = new Vector2(x * _size.x, _size.y * y);
 
