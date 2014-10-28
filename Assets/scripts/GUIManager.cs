@@ -25,7 +25,8 @@ public class GUIManager : MonoBehaviour9Bits {
     ButtonNote[] buttonNotes = {
         new ButtonNote(Note.DO, "Note0"),
         new ButtonNote(Note.RE, "Note1"),
-        new ButtonNote(Note.MI, "Note2"),
+        // new ButtonNote(Note.MI, "Note2"),
+        new ButtonNote(Note.FA, "Note2"),
         new ButtonNote(Note.SOL, "Note3"),
         new ButtonNote(Note.LA, "Note4"),
     };
