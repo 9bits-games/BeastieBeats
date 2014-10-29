@@ -120,7 +120,7 @@ public class Track : MonoBehaviour9Bits
             new NoteInTrack{note = Note.SOL, time = 19.20f},
             new NoteInTrack{note = Note.LA, time = 19.56f},
             new NoteInTrack{note = Note.RE, time = 22.56f},
-            new NoteInTrack{note = Note.FA, time = 22.80f},
+            new NoteInTrack{note = Note.FA, time = 22.80f}/*,
             new NoteInTrack{note = Note.SOL, time = 23.04f},
             new NoteInTrack{note = Note.LA, time = 23.40f},
             new NoteInTrack{note = Note.DO, time = 23.76f},
@@ -354,7 +354,7 @@ public class Track : MonoBehaviour9Bits
             new NoteInTrack{note = Note.SOL, time = 92.64f},
             new NoteInTrack{note = Note.LA, time = 93.12f},
             new NoteInTrack{note = Note.DO, time = 93.60f},
-            new NoteInTrack{note = Note.RE, time = 94.08f}
+            new NoteInTrack{note = Note.RE, time = 94.08f}*/
         };
         Array.ForEach(notes, nit => nit.time -= 7.7f);
     }
@@ -407,12 +407,13 @@ public class Track : MonoBehaviour9Bits
     private void SetUpEventsForMelody() {
         OnNoteWellPlayed -= MelodyNoteWellPlayed;
         OnNoteWellPlayed += MelodyNoteWellPlayed;
-
+        /*
         OnNoteBadPlayed -= MelodyNoteBadPlayed;
         OnNoteBadPlayed += MelodyNoteBadPlayed;
 
         OnNoteNotPlayed -= MelodyNoteNotPlayed;
         OnNoteNotPlayed += MelodyNoteNotPlayed;
+        */
     }
 
     private void MelodyNoteWellPlayed(Note note, float trackTime, float playTime) {

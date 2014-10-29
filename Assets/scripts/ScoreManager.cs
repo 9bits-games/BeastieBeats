@@ -18,7 +18,7 @@ public class ScoreManager : MonoBehaviour9Bits
     public event EmotionBelowLimit OnEmotionBelowLimit;
 
     // The total score of all notes played.
-    public int TotalScore { get; private set; }
+    public int TotalScore;// { get; private set; }
     // The meassurement of the emotionometer.
     public int EmotionMeter { get; private set; }
     // The meassurement of the emotionometer.

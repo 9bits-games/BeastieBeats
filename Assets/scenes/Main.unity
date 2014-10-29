@@ -283,7 +283,7 @@ Transform:
   m_GameObject: {fileID: 30187573}
   m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.60000002, y: 1.60000002, z: 1.60000002}
   m_Children:
   - {fileID: 230585411}
   - {fileID: 1107775723}
@@ -3533,11 +3533,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400042, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 3.79999995
       objectReference: {fileID: 0}
     - target: {fileID: 400042, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.0999999
+      value: 3.79999995
       objectReference: {fileID: 0}
     - target: {fileID: 400042, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3549,7 +3549,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400042, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
       propertyPath: m_LocalRotation.y
-      value: .976296008
+      value: -.976296008
       objectReference: {fileID: 0}
     - target: {fileID: 400042, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
       propertyPath: m_LocalRotation.z
@@ -3557,7 +3557,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400042, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -.216439724
+      value: .21643953
       objectReference: {fileID: 0}
     - target: {fileID: 400042, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
       propertyPath: m_RootOrder
@@ -3566,6 +3566,10 @@ Prefab:
     - target: {fileID: 100042, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
       propertyPath: m_Name
       value: SpeakerR
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
+      propertyPath: finalTargetScale
+      value: .699999988
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
@@ -3888,7 +3892,7 @@ Transform:
   m_PrefabInternal: {fileID: 1025291258}
   m_GameObject: {fileID: 819370400}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.22497773, z: -.283288956}
+  m_LocalPosition: {x: 0, y: 1.34903169, z: -.283288956}
   m_LocalScale: {x: 1.77782917, y: 2.42457056, z: 1.60021651}
   m_Children: []
   m_Father: {fileID: 2058370150}
@@ -4164,6 +4168,26 @@ Prefab:
     - target: {fileID: 400004, guid: e46c024d21bbe4c5388ddd7e72f01cb8, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: e46c024d21bbe4c5388ddd7e72f01cb8, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.60000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: e46c024d21bbe4c5388ddd7e72f01cb8, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.60000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: e46c024d21bbe4c5388ddd7e72f01cb8, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.60000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: e46c024d21bbe4c5388ddd7e72f01cb8, type: 2}
+      propertyPath: finalTargetScale
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: e46c024d21bbe4c5388ddd7e72f01cb8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.34903169
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e46c024d21bbe4c5388ddd7e72f01cb8, type: 2}
@@ -4579,8 +4603,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400042, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
   m_PrefabInternal: {fileID: 646796336}
   m_GameObject: {fileID: 1147033314}
-  m_LocalRotation: {x: 0, y: .976296008, z: 0, w: -.216439724}
-  m_LocalPosition: {x: 3, y: 3.0999999, z: .5}
+  m_LocalRotation: {x: 0, y: -.976296008, z: 0, w: .21643953}
+  m_LocalPosition: {x: 3.79999995, y: 3.79999995, z: .5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1862491960}
@@ -4607,7 +4631,7 @@ MonoBehaviour:
   percentageForMaxScale: .699999988
   percentageForMinScale: .100000001
   beginingTargetScale: .300000012
-  finalTargetScale: 1
+  finalTargetScale: .699999988
   baseScale: {x: 1, y: 1, z: 1}
 --- !u!114 &1147033317
 MonoBehaviour:
@@ -4678,7 +4702,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: .600000024
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4688,9 +4712,9 @@ AudioSource:
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
+  BypassEffects: 1
+  BypassListenerEffects: 1
+  BypassReverbZones: 1
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -4740,7 +4764,7 @@ MonoBehaviour:
   bgMusic: {fileID: 8300000, guid: dc5ff50b93bdb45d0bed245c9be4951e, type: 3}
   melody: {fileID: 8300000, guid: 03bfb87f12416441c94c907c01f01651, type: 3}
   errorSound: {fileID: 8300000, guid: b142a636f3ebe442981bde703962926b, type: 3}
-  lookAheadTime: 1
+  lookAheadTime: .5
   timeTolerancy: .300000012
 --- !u!82 &1163405173
 AudioSource:
@@ -4762,9 +4786,9 @@ AudioSource:
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
+  BypassEffects: 1
+  BypassListenerEffects: 1
+  BypassReverbZones: 1
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -8306,15 +8330,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a3721ac96bb14cd7b54e1b181b4f16a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TotalScore: 0
   MaxEmotionMeter: 1000
   InitialEmotionMeter: 500
   ScorePerGoodNote: 100
   ScorePerBadNote: 70
   ScorePerNotPlayNote: 120
-  GoodComboStreak: 3
-  CoolComboStreak: 7
-  GreatComboStreak: 15
-  AwesomeComboStreak: 20
+  GoodComboStreak: 15
+  CoolComboStreak: 20
+  GreatComboStreak: 35
+  AwesomeComboStreak: 50
   GoodComboSound: {fileID: 8300000, guid: 847e98c5ab55a4e119d4b05d931d2267, type: 3}
   CoolComboSound: {fileID: 8300000, guid: a7b6782a7c41c4af5804c4a161967a88, type: 3}
   GreatComboSound: {fileID: 8300000, guid: fe1c9170006c24eaaac1381eec35d2bb, type: 3}
@@ -8520,7 +8545,7 @@ Transform:
   m_PrefabInternal: {fileID: 2123814859}
   m_GameObject: {fileID: 1963348558}
   m_LocalRotation: {x: 0, y: .976296008, z: 0, w: .21643953}
-  m_LocalPosition: {x: -3, y: 3.0999999, z: .5}
+  m_LocalPosition: {x: -3.79999995, y: 3.79999995, z: .5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1612358199}
@@ -8547,7 +8572,7 @@ MonoBehaviour:
   percentageForMaxScale: .699999988
   percentageForMinScale: .100000001
   beginingTargetScale: .300000012
-  finalTargetScale: 1
+  finalTargetScale: .699999988
   baseScale: {x: 1, y: 1, z: 1}
 --- !u!114 &1963348561
 MonoBehaviour:
@@ -8641,7 +8666,7 @@ MonoBehaviour:
   percentageForMinScale: .300000012
   factorSpeed: .0500000007
   beginingTargetScale: -.239999995
-  finalTargetScale: 1.5
+  finalTargetScale: 1.75
 --- !u!114 &2058370153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10921,11 +10946,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400042, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: -3.79999995
       objectReference: {fileID: 0}
     - target: {fileID: 400042, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.0999999
+      value: 3.79999995
       objectReference: {fileID: 0}
     - target: {fileID: 400042, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
       propertyPath: m_LocalPosition.z
@@ -10954,6 +10979,10 @@ Prefab:
     - target: {fileID: 100042, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
       propertyPath: m_Name
       value: SpeakerL
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
+      propertyPath: finalTargetScale
+      value: .699999988
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
