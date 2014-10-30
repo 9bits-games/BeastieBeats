@@ -4765,7 +4765,7 @@ MonoBehaviour:
   melody: {fileID: 8300000, guid: 03bfb87f12416441c94c907c01f01651, type: 3}
   errorSound: {fileID: 8300000, guid: b142a636f3ebe442981bde703962926b, type: 3}
   lookAheadTime: .5
-  timeTolerancy: .300000012
+  timeTolerancy: .200000003
 --- !u!82 &1163405173
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8321,6 +8321,65 @@ MonoBehaviour:
   buttonSize: .100000001
   buttonImage: {fileID: 2800000, guid: 4d17040934df64e83848863e09c1f316, type: 3}
   noteAheadImage: {fileID: 2800000, guid: 3c10fceb9578d4efbbb2f9b372c5d0bf, type: 3}
+  notePlayedFeedbackStyle:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 2
+      m_Right: 2
+      m_Top: 2
+      m_Bottom: 2
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 12800000, guid: 1dda311a9c39842d8af6f10845b07a91, type: 3}
+    m_FontSize: 36
+    m_FontStyle: 0
+    m_Alignment: 4
+    m_WordWrap: 0
+    m_RichText: 0
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
 --- !u!114 &1866322276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8987,7 +9046,7 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 1694498815
+        rgba: 2080374783
       minMaxState: 0
     startSize:
       scalar: 4
@@ -10996,6 +11055,10 @@ Prefab:
     - target: {fileID: 11400000, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
       propertyPath: finalTargetScale
       value: .699999988
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: e9e967fadb5604d19979f94c969b0285, type: 2}
+      propertyPath: InitialModule.startColor.maxColor.rgba
+      value: 2080374783
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e9e967fadb5604d19979f94c969b0285, type: 2}

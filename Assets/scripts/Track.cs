@@ -24,6 +24,8 @@ public class Track : MonoBehaviour9Bits
     public delegate void NoteNotPlayed(Note note);
     public event NoteNotPlayed OnNoteNotPlayed;
 
+//    public Boolean autoPlay = false;
+
     // The background musinc to play in the track.
     public AudioClip bgMusic;
     // The melody with the notes that the player must play
@@ -120,7 +122,7 @@ public class Track : MonoBehaviour9Bits
             new NoteInTrack{note = Note.SOL, time = 19.20f},
             new NoteInTrack{note = Note.LA, time = 19.56f},
             new NoteInTrack{note = Note.RE, time = 22.56f},
-            new NoteInTrack{note = Note.FA, time = 22.80f}/*,
+            new NoteInTrack{note = Note.FA, time = 22.80f},
             new NoteInTrack{note = Note.SOL, time = 23.04f},
             new NoteInTrack{note = Note.LA, time = 23.40f},
             new NoteInTrack{note = Note.DO, time = 23.76f},
@@ -354,9 +356,22 @@ public class Track : MonoBehaviour9Bits
             new NoteInTrack{note = Note.SOL, time = 92.64f},
             new NoteInTrack{note = Note.LA, time = 93.12f},
             new NoteInTrack{note = Note.DO, time = 93.60f},
-            new NoteInTrack{note = Note.RE, time = 94.08f}*/
+            new NoteInTrack{note = Note.RE, time = 94.08f}
         };
         Array.ForEach(notes, nit => nit.time -= 7.7f);
+
+        //Cosas para pussys, quitar
+        /*NoteInTrack[] nits = new NoteInTrack[notes.Length];
+        float lastNoteTime = float.MinValue;
+        int count = 0;
+        foreach (NoteInTrack nit in notes) {
+            if(lastNoteTime + 0.35f < nit.time) {
+                nits[count++] = nit;
+                lastNoteTime = nit.time;
+            }
+        }
+        notes = new NoteInTrack[count];
+        Array.Copy(nits, notes, count);*/
     }
 
     // Update is called once per frame
@@ -407,13 +422,13 @@ public class Track : MonoBehaviour9Bits
     private void SetUpEventsForMelody() {
         OnNoteWellPlayed -= MelodyNoteWellPlayed;
         OnNoteWellPlayed += MelodyNoteWellPlayed;
-        /*
+        
         OnNoteBadPlayed -= MelodyNoteBadPlayed;
         OnNoteBadPlayed += MelodyNoteBadPlayed;
 
         OnNoteNotPlayed -= MelodyNoteNotPlayed;
         OnNoteNotPlayed += MelodyNoteNotPlayed;
-        */
+        
     }
 
     private void MelodyNoteWellPlayed(Note note, float trackTime, float playTime) {
@@ -446,6 +461,13 @@ public class Track : MonoBehaviour9Bits
                     if (OnNoteNotPlayed != null) OnNoteNotPlayed(noteInTrack.note);
                 }
             }
+            /* AUTO PLAY:
+            NoteInTrack nit = notes[backNoteIndex + 1];
+            if (Time >= nit.time) {
+                backNoteIndex++;
+                this.PlayNote(nit.note);
+            }
+            */
         }
     }
 

@@ -13,7 +13,7 @@ public class BotonJugar : MonoBehaviour {
 	
 	}
 
-	void OnMouseDown(){
+	void OnMouseUp(){
 		Application.LoadLevel ("Main");
 	}
 }

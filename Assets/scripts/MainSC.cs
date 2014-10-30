@@ -33,6 +33,9 @@ public class MainSC : SceneController {
         guiManager = this.GetComponent<GUIManager>();
         guiManager.Set(commander, scoreManager);
         track.OnNoteAhead += guiManager.NoteAhead;
+        track.OnNoteWellPlayed += guiManager.NoteWellPlayed;
+        track.OnNoteNotPlayed += guiManager.NoteNotPlayed;
+//        track.OnNoteBadPlayed += guiManager.NoteBadPlayed;
 
         PlayNoteCommand.OnNotePlayed += OnNotePlayed;
     }

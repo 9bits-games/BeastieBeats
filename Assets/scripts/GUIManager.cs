@@ -21,6 +21,8 @@ public class GUIManager : MonoBehaviour9Bits {
     //Texture of the note ahead effect
     public Texture2D noteAheadImage;
 
+    public GUIStyle notePlayedFeedbackStyle;
+
     //The list of buttons to be presented on the board.
     ButtonNote[] buttonNotes = {
         new ButtonNote(Note.DO, "Note0"),
@@ -52,6 +54,36 @@ public class GUIManager : MonoBehaviour9Bits {
         };
 
         btn.noteAheadEffects.Add(effect);
+    }
+
+    public void NoteWellPlayed(Note note, float trackTime, float playTime) {
+        ButtonNote btn = getButtonNote(note);
+
+        PlayFeedbackEffect effect = PlayFeedbackEffect.WellPlayedEffect(
+            btn, notePlayedFeedbackStyle
+        );
+
+        btn.playFeedbackEffects.Add(effect);
+    }
+
+    public void NoteBadPlayed(Note note, float playTime) {
+        ButtonNote btn = getButtonNote(note);
+
+        PlayFeedbackEffect effect = PlayFeedbackEffect.BadPlayedEffect(
+            btn, notePlayedFeedbackStyle
+        );
+
+        btn.playFeedbackEffects.Add(effect);
+    }
+
+    public void NoteNotPlayed(Note note) {
+        ButtonNote btn = getButtonNote(note);
+
+        PlayFeedbackEffect effect = PlayFeedbackEffect.MissedEffect(
+            btn, notePlayedFeedbackStyle
+        );
+
+        btn.playFeedbackEffects.Add(effect);
     }
 
     //Injects Commander and ScoreManager instances.
@@ -98,15 +130,84 @@ public class GUIManager : MonoBehaviour9Bits {
         }
 
         //Only for debug:
+        /*
         GUI.Box(new Rect((Screen.width - 170)/2, 10, 170, 25), String.Format("T: {0}, E: {1}, C: {2}",
             scoreManager.TotalScore, scoreManager.EmotionMeter, scoreManager.ComboCount));
+            */
 		
 	}
 
     private ButtonNote getButtonNote(Note note) {
         return Array.Find(buttonNotes, btn => btn.note == note);
     }
+	
+	private class PlayFeedbackEffect {
+        public static PlayFeedbackEffect WellPlayedEffect(ButtonNote buttonNote, GUIStyle textStyle) {
+            return new PlayFeedbackEffect {
+                buttonNote = buttonNote,
+                text = buttonNote.note.Name,
+                color = buttonNote.note.Color,
+                textStyle = textStyle,
+            };
+        }
 
+        public static PlayFeedbackEffect MissedEffect(ButtonNote buttonNote, GUIStyle textStyle) {
+            return new PlayFeedbackEffect {
+                buttonNote = buttonNote,
+                text = "Miss",
+                color = Color.gray,
+                textStyle = textStyle,
+            };
+        }
+
+        public static PlayFeedbackEffect BadPlayedEffect(ButtonNote buttonNote, GUIStyle textStyle) {
+            return new PlayFeedbackEffect {
+                buttonNote = buttonNote,
+                text =  "Bad!",
+                color = Color.gray,
+                textStyle = textStyle,
+            };
+        }
+
+		// The button over wich the effect is showed.
+		public ButtonNote buttonNote;
+        public GUIStyle textStyle;
+        public string text;
+        public Color color;
+
+		public float timeBeforeFadeOut = 0.8f;
+		public float fadeOutTime = 0.3f;
+        public float risingSpeed = 40f;
+
+        private float elapsedTime = 0f;
+        private float currentHeight = 0f;
+
+		//Plays the effect animation.
+        public void OnGUI(Rect buttonRect) {
+
+            if (elapsedTime < timeBeforeFadeOut + fadeOutTime) {
+                float dt = Time.deltaTime;
+                float alpha = 1f;
+                currentHeight -= risingSpeed * dt;
+
+                if (elapsedTime > timeBeforeFadeOut) {
+                    float remainingTimeToFade = elapsedTime - timeBeforeFadeOut;
+                    alpha = 1f - remainingTimeToFade / fadeOutTime;
+                }
+
+                color.a = alpha;
+                textStyle.normal.textColor = color;
+                buttonRect.y += -buttonRect.height * 0.5f + currentHeight;
+                GUI.Label(buttonRect, text, textStyle);
+            }
+
+		}
+
+		public void Update () {
+            elapsedTime += Time.deltaTime;
+		}
+	}
+	
     /**
      * Graphical effect that indicates that a note is comming in the track.
      * Is must be placed over a ButtonNote to indicate the user that the button
@@ -154,6 +255,7 @@ public class GUIManager : MonoBehaviour9Bits {
         public Note note;
         //The list of NoteAheadEffect to render over this button.
         public List<NoteAheadEffect> noteAheadEffects;
+        public List<PlayFeedbackEffect> playFeedbackEffects;
         public Commander commander;
 
         //The Unity input name.
@@ -166,6 +268,7 @@ public class GUIManager : MonoBehaviour9Bits {
         public ButtonNote(Note note, string buttonName) {
             this.note = note;
             noteAheadEffects = new List<NoteAheadEffect>();
+            playFeedbackEffects = new List<PlayFeedbackEffect>();
             this.buttonName = buttonName;
         }
 
@@ -173,9 +276,13 @@ public class GUIManager : MonoBehaviour9Bits {
         public void OnGUI(Rect area, Texture2D buttonImage, Texture2D noteAheadImage) {
             Color prevColor = GUI.color;
             GUI.color = note.Color;
+
             GUI.DrawTexture(Util.InflateRectByFactor(area, 2f, 2f), buttonImage);
             noteAheadEffects.ForEach(effect => effect.OnGUI(area, noteAheadImage));
+
             GUI.color = prevColor;
+
+            playFeedbackEffects.ForEach(effect => effect.OnGUI(area));
 
             //if(GUI.Button(area, note.Name)) playNote();
             if (Event.current.type == EventType.MouseUp && area.Contains(Event.current.mousePosition)) {
@@ -186,6 +293,8 @@ public class GUIManager : MonoBehaviour9Bits {
         //This will check for user input
         public void Update () {
             noteAheadEffects.ForEach(effect => effect.Update());
+            playFeedbackEffects.ForEach(effect => effect.Update());
+
             if (Input.GetButtonDown(buttonName)) playNote();
         }
 
