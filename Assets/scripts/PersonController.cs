@@ -21,6 +21,8 @@ public class PersonController : MonoBehaviour9Bits {
     private AudioSource soundEffect;
 
     public void Start() {
+        OnReachedInterestPosition = null;
+
         AudioSource[] audioSources = GetComponents<AudioSource>();
 
         soundEffect = audioSources[0];

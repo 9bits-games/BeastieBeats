@@ -43,6 +43,9 @@ public class PlayNoteCommand : Command
     // This events is triggered when a note is played by the user.
     public delegate void NotePlayed(PlayNoteCommand playNoteCommand);
     public static event NotePlayed OnNotePlayed;
+    public static void ClearOnNotePlayed() {
+        OnNotePlayed = null;
+    }
 
     public Note Note { get; private set; }
 

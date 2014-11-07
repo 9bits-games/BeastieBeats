@@ -61,6 +61,8 @@ public class ScoreManager : MonoBehaviour9Bits
         comboCount = 0;
         comboLevel = 0;
 
+        OnEmotionBelowLimit = null;
+
         SoundEffect = GetComponent<AudioSource>();
         SoundEffect.priority = 0;
         SoundEffect.minDistance = float.MaxValue;
@@ -76,7 +78,6 @@ public class ScoreManager : MonoBehaviour9Bits
     public void OnNoteWellPlayed(Note note, float trackTime, float playTime) {
         TotalScore += ScorePerGoodNote;
         EmotionMeter = Mathf.Min(EmotionMeter + ScorePerGoodNote, MaxEmotionMeter);
-        Debug.Log(String.Format("Note Well Played {0}", note.Name));
 
         ComboCount++;
     }
@@ -86,7 +87,6 @@ public class ScoreManager : MonoBehaviour9Bits
         TotalScore -= ScorePerBadNote;
         EmotionMeter -= ScorePerBadNote;
         checkEmotionMeter();
-        Debug.Log(String.Format("Note Bad Played {0}", note.Name));
         ComboCount = 0;
     }
 
@@ -95,7 +95,6 @@ public class ScoreManager : MonoBehaviour9Bits
         TotalScore -= ScorePerNotPlayNote;
         EmotionMeter -= ScorePerNotPlayNote;
         checkEmotionMeter();
-        Debug.Log(String.Format("Note Not Played {0}", note.Name));
         ComboCount = 0;
     }
 
@@ -130,7 +129,6 @@ public class ScoreManager : MonoBehaviour9Bits
             SoundEffect.Play();
             comboLevel = toComboLVL;
         }
-        Debug.Log("Combo Lvl " + comboLevel);
 
     }
 

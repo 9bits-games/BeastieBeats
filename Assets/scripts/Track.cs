@@ -108,6 +108,10 @@ public class Track : MonoBehaviour9Bits
     private int backNoteIndex;
 
     void Start () {
+        OnNoteAhead = null;
+        OnNoteWellPlayed = null;
+        OnNoteBadPlayed = null;
+        OnNoteNotPlayed = null;
         SetUpAudioSources();
 
         SetUpEventsForMelody();

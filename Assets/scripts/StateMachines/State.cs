@@ -26,6 +26,9 @@ namespace StateMachines {
             this.enabled = false;
             this.entering = false;
             this.exiting = false;
+
+            OnStateEntered = null;
+            OnFullyExited = null;
         }
 
         public virtual void Enter() {
@@ -39,7 +42,6 @@ namespace StateMachines {
         }
 
         protected virtual void FullyEnter() {
-            Debug.Log("Fully Enter");
             this.enabled = true;
             this.entering = false;
             if (OnStateEntered != null)

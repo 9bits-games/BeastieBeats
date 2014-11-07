@@ -18,6 +18,8 @@ public class GUIManager : MonoBehaviour9Bits {
     public float buttonSize = 0.2f;
     //Texture of a button
     public Texture2D buttonImage;
+    public Texture2D resetBtn;
+    public Texture2D pauseBtn;
     //Texture of the note ahead effect
     public Texture2D noteAheadImage;
 
@@ -35,6 +37,7 @@ public class GUIManager : MonoBehaviour9Bits {
 
     ScoreManager scoreManager;
     Commander commander;
+    MainSC mainSC;
 
     /**
      * Adds an effect that indicates that a note is near in the track.
@@ -87,9 +90,10 @@ public class GUIManager : MonoBehaviour9Bits {
     }
 
     //Injects Commander and ScoreManager instances.
-    public void Set(Commander commander, ScoreManager scoreManager) {
+    public void Set(Commander commander, ScoreManager scoreManager, MainSC mainSC) {
         this.commander = commander;
         this.scoreManager = scoreManager;
+        this.mainSC = mainSC;
 
         Array.ForEach(buttonNotes, btn => btn.commander = commander);
     }
@@ -127,6 +131,21 @@ public class GUIManager : MonoBehaviour9Bits {
             buttonNote.OnGUI(btn_r, buttonImage, noteAheadImage);
 
             count++;
+        }
+
+        Rect restRect = new Rect(30, 30, 60, 60);
+        GUI.DrawTexture(restRect, resetBtn);
+        Rect pauseRect = new Rect(110, 30, 60, 60);
+        GUI.DrawTexture(pauseRect, pauseBtn);
+
+        if (Event.current.type == EventType.MouseUp) {
+            if (restRect.Contains(Event.current.mousePosition)) {
+                Application.LoadLevel(Application.loadedLevelName);
+            }
+
+            if (pauseRect.Contains(Event.current.mousePosition)) {
+                this.mainSC.Pause();
+            }
         }
 
         //Only for debug:

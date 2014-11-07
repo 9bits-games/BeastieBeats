@@ -12,7 +12,7 @@ namespace StageElements.SpeakerSE.States
         public float changeFactor = 0.01f;
         public float percentageToGrow = 0.1f;
 
-        private static Vector3 targetScale = Vector3.zero;
+        private Vector3 targetScale = Vector3.zero;
 
         void Update() {
             if (!entering && !exiting) {

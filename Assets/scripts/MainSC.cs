@@ -27,16 +27,16 @@ public class MainSC : SceneController {
         track.OnNoteWellPlayed += scoreManager.OnNoteWellPlayed;
         track.OnNoteBadPlayed += scoreManager.OnNoteBadPlayed;
         track.OnNoteNotPlayed += scoreManager.OnNoteNotPlayed;
-//        scoreManager.Set(track);
 
         //Connecting the GUIManager with the Track
         guiManager = this.GetComponent<GUIManager>();
-        guiManager.Set(commander, scoreManager);
+        guiManager.Set(commander, scoreManager, this);
         track.OnNoteAhead += guiManager.NoteAhead;
         track.OnNoteWellPlayed += guiManager.NoteWellPlayed;
         track.OnNoteNotPlayed += guiManager.NoteNotPlayed;
 //        track.OnNoteBadPlayed += guiManager.NoteBadPlayed;
 
+        PlayNoteCommand.ClearOnNotePlayed();
         PlayNoteCommand.OnNotePlayed += OnNotePlayed;
     }
 	
