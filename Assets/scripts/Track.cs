@@ -24,6 +24,10 @@ public class Track : MonoBehaviour9Bits
     public delegate void NoteNotPlayed(Note note);
     public event NoteNotPlayed OnNoteNotPlayed;
 
+    //Triggered when track header is at the end.
+    public delegate void TrackEnded();
+    public event TrackEnded OnTrackEnded;
+
 //    public Boolean autoPlay = false;
 
     // The background musinc to play in the track.
@@ -49,7 +53,14 @@ public class Track : MonoBehaviour9Bits
         get{ return bgAudio.time; }
         set{ bgAudio.time = value; }
     }
+
+    public float PercentagePlayed {
+        get{ return bgAudio.time / bgMusic.length * 100f; }
+    }
+
     public bool isPlaying { get{ return bgAudio.isPlaying; } }
+
+    public Boolean ended { get; set; }
 
     public void Play() {
         //        Playing = true;
@@ -107,11 +118,13 @@ public class Track : MonoBehaviour9Bits
     private int aheadNoteIndex;
     private int backNoteIndex;
 
-    void Start () {
+    void Awake () {
         OnNoteAhead = null;
         OnNoteWellPlayed = null;
         OnNoteBadPlayed = null;
         OnNoteNotPlayed = null;
+        OnTrackEnded = null;
+        ended = false;
         SetUpAudioSources();
 
         SetUpEventsForMelody();
@@ -363,6 +376,7 @@ public class Track : MonoBehaviour9Bits
             new NoteInTrack{note = Note.RE, time = 94.08f}
         };
         Array.ForEach(notes, nit => nit.time -= 7.7f);
+        Debug.Log("Total Notes: " + notes.Length);
 
         //Cosas para pussys, quitar
         /*NoteInTrack[] nits = new NoteInTrack[notes.Length];
@@ -381,8 +395,16 @@ public class Track : MonoBehaviour9Bits
     // Update is called once per frame
     void Update () {
         if (isPlaying) {
+            AutoPlay();
             LookAheadNotes();
             CheckBackNotes();
+        }
+
+        //Cheking for the end of file:
+        if (!ended && bgAudio.time >= bgMusic.length) {
+            ended = true;
+            if (OnTrackEnded != null)
+                OnTrackEnded();
         }
     }
 
@@ -465,13 +487,14 @@ public class Track : MonoBehaviour9Bits
                     if (OnNoteNotPlayed != null) OnNoteNotPlayed(noteInTrack.note);
                 }
             }
-            /* AUTO PLAY:
-            NoteInTrack nit = notes[backNoteIndex + 1];
-            if (Time >= nit.time) {
-                backNoteIndex++;
-                this.PlayNote(nit.note);
-            }
-            */
+        }
+    }
+
+    private void AutoPlay() {
+        NoteInTrack nit = notes[backNoteIndex + 1];
+        if (Time >= nit.time) {
+            backNoteIndex++;
+            this.PlayNote(nit.note);
         }
     }
 

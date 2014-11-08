@@ -2077,7 +2077,7 @@ Transform:
   m_PrefabInternal: {fileID: 1488430410}
   m_GameObject: {fileID: 452011516}
   m_LocalRotation: {x: 0, y: 0, z: .151679158, w: .988429844}
-  m_LocalPosition: {x: -.400105238, y: 5.5, z: -2.5}
+  m_LocalPosition: {x: -1.10671866, y: 5.5, z: -2.5}
   m_LocalScale: {x: 5, y: 10, z: 0}
   m_Children: []
   m_Father: {fileID: 1124330486}
@@ -7329,7 +7329,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: d55f5a63d92a14cf8a446bd1cb006d38, type: 2}
       propertyPath: m_LocalPosition.x
-      value: .954747677
+      value: .591971338
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d55f5a63d92a14cf8a446bd1cb006d38, type: 2}
       propertyPath: m_LocalPosition.y
@@ -7337,7 +7337,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d55f5a63d92a14cf8a446bd1cb006d38, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -2.5
+      value: -.432724953
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d55f5a63d92a14cf8a446bd1cb006d38, type: 2}
       propertyPath: m_LocalRotation.x
@@ -7511,7 +7511,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: d55f5a63d92a14cf8a446bd1cb006d38, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -.400105238
+      value: -1.10671866
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d55f5a63d92a14cf8a446bd1cb006d38, type: 2}
       propertyPath: m_LocalPosition.y
@@ -8008,7 +8008,7 @@ Transform:
   m_PrefabInternal: {fileID: 1468639754}
   m_GameObject: {fileID: 1754823660}
   m_LocalRotation: {x: 0, y: 0, z: -.151416227, w: .988470137}
-  m_LocalPosition: {x: .954747677, y: 5.5, z: -2.5}
+  m_LocalPosition: {x: .591971338, y: 5.5, z: -.432724953}
   m_LocalScale: {x: 5, y: 10, z: 0}
   m_Children: []
   m_Father: {fileID: 1124330486}
@@ -8153,7 +8153,7 @@ Transform:
   m_PrefabInternal: {fileID: 2145044797}
   m_GameObject: {fileID: 1811528510}
   m_LocalRotation: {x: 0, y: 0, z: -.139589429, w: .99020952}
-  m_LocalPosition: {x: 1.54646587, y: 5.5, z: -1}
+  m_LocalPosition: {x: 1.54646587, y: 5.5, z: -2.38943815}
   m_LocalScale: {x: 5, y: 10, z: 0}
   m_Children: []
   m_Father: {fileID: 1124330486}
@@ -8310,12 +8310,14 @@ MonoBehaviour:
   buttonImage: {fileID: 2800000, guid: 4d17040934df64e83848863e09c1f316, type: 3}
   resetBtn: {fileID: 2800000, guid: 3aa10567a330b4184bddd386db015a13, type: 3}
   pauseBtn: {fileID: 2800000, guid: 0d3ddc686a1854c24b4b7debd520243e, type: 3}
+  youWinImage: {fileID: 2800000, guid: 02822262d50264ec98459bf5600342bb, type: 3}
+  youLooseImage: {fileID: 2800000, guid: 1f386a1d9bcf4482c8ff2e731ac530fa, type: 3}
   noteAheadImage: {fileID: 2800000, guid: 3c10fceb9578d4efbbb2f9b372c5d0bf, type: 3}
   notePlayedFeedbackStyle:
     m_Name: 
     m_Normal:
       m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+      m_TextColor: {r: .91911763, g: .91911763, b: .91911763, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
@@ -11072,7 +11074,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d55f5a63d92a14cf8a446bd1cb006d38, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: -2.38943815
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d55f5a63d92a14cf8a446bd1cb006d38, type: 2}
       propertyPath: m_LocalRotation.x

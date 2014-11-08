@@ -20,7 +20,7 @@ public class PersonController : MonoBehaviour9Bits {
 
     private AudioSource soundEffect;
 
-    public void Start() {
+    public void Awake() {
         OnReachedInterestPosition = null;
 
         AudioSource[] audioSources = GetComponents<AudioSource>();

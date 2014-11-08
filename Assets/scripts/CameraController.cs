@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour9Bits {
 
     private Vector3 initPos;
 
-	void Start () {
+    void Awake () {
         initPos = transform.position;
 	}
 	

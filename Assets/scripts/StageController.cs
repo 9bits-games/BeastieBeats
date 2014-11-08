@@ -18,6 +18,8 @@ public class StageController : MonoBehaviour9Bits
 
     public float PercentageToTarget { get { return currentStateScore / maxScore; } }
 
+//    void Awake() {}
+
     void Start() {
         maxScore = scoreManager.CalculateMaximunScoreOfTrack(track);
         currentStateScore = scoreManager.TotalScore;

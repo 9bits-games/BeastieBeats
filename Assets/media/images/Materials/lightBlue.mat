@@ -23,12 +23,12 @@ Material:
     m_Floats:
       data:
         first:
-          name: _Shininess
-        second: .100000016
-      data:
-        first:
           name: _InvFade
         second: 1
+      data:
+        first:
+          name: _Shininess
+        second: .100000016
     m_Colors:
       data:
         first:
@@ -36,13 +36,13 @@ Material:
         second: {r: 0, g: 1, b: .958620548, a: 1}
       data:
         first:
-          name: _SpecColor
-        second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
           name: _TintColor
-        second: {r: 0, g: 1, b: 1, a: .501960814}
+        second: {r: 0, g: 1, b: 1, a: .674509823}
       data:
         first:
           name: _Emission
         second: {r: 0, g: 1, b: .958217144, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: 0, g: 0, b: 0, a: 1}

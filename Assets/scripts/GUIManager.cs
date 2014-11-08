@@ -22,6 +22,8 @@ public class GUIManager : MonoBehaviour9Bits {
     public Texture2D buttonImage;
     public Texture2D resetBtn;
     public Texture2D pauseBtn;
+    public Texture2D youWinImage;
+    public Texture2D youLooseImage;
     //Texture of the note ahead effect
     public Texture2D noteAheadImage;
 
@@ -39,7 +41,28 @@ public class GUIManager : MonoBehaviour9Bits {
 
     ScoreManager scoreManager;
     Commander commander;
+    Track track;
     MainSC mainSC; // TODO: Quitar dependencia y reemplazar por comunicación con Commander o Eventos.
+
+    public void Pause() {
+        if (state != GUIState.Win && state != GUIState.Loose) {
+            state = GUIState.Paused;
+        }
+    }
+
+    public void Unpause() {
+        if (state != GUIState.Win && state != GUIState.Loose) {
+            state = GUIState.Playing;
+        }
+    }
+
+    public void Win() {
+        state = GUIState.Win;
+    }
+
+    public void Loose() {
+        state = GUIState.Loose;
+    }
 
     /**
      * Adds an effect that indicates that a note is near in the track.
@@ -92,16 +115,17 @@ public class GUIManager : MonoBehaviour9Bits {
     }
 
     //Injects Commander and ScoreManager instances.
-    public void Set(Commander commander, ScoreManager scoreManager, MainSC mainSC) {
+    public void Set(Commander commander, ScoreManager scoreManager, Track track, MainSC mainSC) {
         this.commander = commander;
         this.scoreManager = scoreManager;
+        this.track = track;
         this.mainSC = mainSC;
 
         Array.ForEach(buttonNotes, btn => btn.commander = commander);
     }
 
 	// Use this for initialization
-	void Start () {
+    void Awake () {
         state = GUIState.Playing;
     }
 
@@ -118,47 +142,103 @@ public class GUIManager : MonoBehaviour9Bits {
         Rect GUIRect = new Rect(0f, Screen.height * (1f - bgSize), Screen.width, Screen.height * bgSize);
 
         //Drawing the Buttons
-        //Buttons size
-        float buttonPixelSize = buttonSize * Screen.width;
-        //Horizontal Maring 
-        float marginH = (Screen.width - buttonNotes.Length * buttonPixelSize - (buttonNotes.Length - 1) * paddingH * Screen.width) / 2f;
-        float count = 0f;
-        foreach (ButtonNote buttonNote in buttonNotes) {
-            Rect btn_r = new Rect(
-                left: marginH + count * paddingH * Screen.width + count * buttonPixelSize,
-                top: (marginTop) * Screen.height + GUIRect.yMin,
-                width: buttonPixelSize,
-                height: buttonPixelSize 
-            );
+        if (state != GUIState.Win && state != GUIState.Loose) {
+            //Buttons size
+            float buttonPixelSize = buttonSize * Screen.width;
+            //Horizontal Maring 
+            float marginH = (Screen.width - buttonNotes.Length * buttonPixelSize - (buttonNotes.Length - 1) * paddingH * Screen.width) / 2f;
+            float count = 0f;
+            foreach (ButtonNote buttonNote in buttonNotes) {
+                Rect btn_r = new Rect(
+                             left: marginH + count * paddingH * Screen.width + count * buttonPixelSize,
+                             top: (marginTop) * Screen.height + GUIRect.yMin,
+                             width: buttonPixelSize,
+                             height: buttonPixelSize 
+                         );
 
-            //Here we handle the input and effects:
-            buttonNote.OnGUI(btn_r, buttonImage, noteAheadImage);
+                //Here we handle the input and effects:
+                buttonNote.OnGUI(btn_r, buttonImage, noteAheadImage);
 
-            count++;
+                count++;
+            }
         }
 
-        Rect restRect = new Rect(30, 30, 60, 60);
-        GUI.DrawTexture(restRect, resetBtn);
-        Rect pauseRect = new Rect(110, 30, 60, 60);
-        GUI.DrawTexture(pauseRect, pauseBtn);
+        Rect resetBtnRect = new Rect(30, 30, 60, 60);
+
+        Rect resetAfterGameBtnRect = new Rect(Screen.width / 2, Screen.height - 20, 100, 100);
+        resetAfterGameBtnRect.x -= resetAfterGameBtnRect.width / 2;
+        resetAfterGameBtnRect.y -= resetAfterGameBtnRect.height;
+
+        Rect pauseBtnRect = new Rect(110, 30, 60, 60);
+
+        Rect pauseImgdRect = new Rect(Screen.width / 2, Screen.height * 0.3f, 200, 100);
+        pauseImgdRect.x -= pauseImgdRect.width / 2;
+        pauseImgdRect.y -= pauseImgdRect.height / 2;
+
+        Rect comboStreakRect = new Rect(Screen.width - 30, 30, 250, 60);
+        comboStreakRect.x -= comboStreakRect.width;
+//        comboStreakRect.y += comboStreakRect.height / 2;
+
+        Rect winLooseImgRect = new Rect(Screen.width / 2, 0, 300, 121);
+        winLooseImgRect.x -= winLooseImgRect.width / 2;
+
+        Rect scoreTitleRect = new Rect(Screen.width / 2, winLooseImgRect.y + winLooseImgRect.height + 10, 200, 40);
+        scoreTitleRect.x -= scoreTitleRect.width / 2;
+        Rect scoreRect = new Rect(Screen.width / 2, scoreTitleRect.y + scoreTitleRect.height, 200, 40);
+        scoreRect.x -= scoreRect.width / 2;
 
         if (Event.current.type == EventType.MouseUp) {
-            if (restRect.Contains(Event.current.mousePosition)) {
+            Rect resetBtnR = resetBtnRect;
+            if (state == GUIState.Win || state == GUIState.Loose) {
+                resetBtnR = resetAfterGameBtnRect;
+            }
+            if (resetBtnR.Contains(Event.current.mousePosition)) {
                 this.mainSC.Reset();
             }
 
-            if (pauseRect.Contains(Event.current.mousePosition)) {
+            if (pauseBtnRect.Contains(Event.current.mousePosition)) {
                 this.mainSC.Pause();
             }
         }
 
+        switch (state) {
+            case GUIState.Playing:
+                GUI.DrawTexture(resetBtnRect, resetBtn);
+                GUI.DrawTexture(pauseBtnRect, pauseBtn);
+                drawComboStreak(comboStreakRect);
+                break;
+            case GUIState.Paused:
+                GUI.Label(pauseImgdRect, "Paused", notePlayedFeedbackStyle);
+                GUI.DrawTexture(resetBtnRect, resetBtn);
+                GUI.DrawTexture(pauseBtnRect, pauseBtn);
+                drawComboStreak(comboStreakRect);
+                break;
+            case GUIState.Win:
+                GUI.Label(scoreTitleRect, "Your Score", notePlayedFeedbackStyle);
+                GUI.Label(scoreRect, String.Format("{0} Points!", scoreManager.TotalScore), notePlayedFeedbackStyle);
+                GUI.DrawTexture(winLooseImgRect, youWinImage);
+                GUI.DrawTexture(resetAfterGameBtnRect, resetBtn);
+                break;
+            case GUIState.Loose:
+                GUI.Label(scoreTitleRect, "Total Played", notePlayedFeedbackStyle);
+                GUI.Label(scoreRect, String.Format("{0}%", (int)track.PercentagePlayed), notePlayedFeedbackStyle);
+                GUI.DrawTexture(winLooseImgRect, youLooseImage);
+                GUI.DrawTexture(resetAfterGameBtnRect, resetBtn);
+                break;
+        }
+
         //Only for debug:
-        /*
-        GUI.Box(new Rect((Screen.width - 170)/2, 10, 170, 25), String.Format("T: {0}, E: {1}, C: {2}",
-            scoreManager.TotalScore, scoreManager.EmotionMeter, scoreManager.ComboCount));
-            */
+
+        GUI.Box(new Rect((Screen.width - 300)/2, 10, 300, 25), String.Format("T: {0}, E: {1}, C: {2}, Time: {3}, P: {4}%",
+            scoreManager.TotalScore, scoreManager.EmotionMeter, scoreManager.ComboCount, (int)track.Time, (int)track.PercentagePlayed));
 		
 	}
+
+    private void drawComboStreak(Rect area) {
+        if (scoreManager.ComboCount >= scoreManager.GoodComboStreak) {
+            GUI.Label(area, String.Format("Combo Streak! {0}", scoreManager.ComboCount), notePlayedFeedbackStyle);
+        }
+    }
 
     private ButtonNote getButtonNote(Note note) {
         return Array.Find(buttonNotes, btn => btn.note == note);
@@ -171,7 +251,7 @@ public class GUIManager : MonoBehaviour9Bits {
                 buttonNote = buttonNote,
                 text = buttonNote.note.Name,
                 color = buttonNote.note.Color,
-                textStyle = textStyle,
+                textStyle = new GUIStyle(textStyle),
             };
         }
 
@@ -180,7 +260,7 @@ public class GUIManager : MonoBehaviour9Bits {
                 buttonNote = buttonNote,
                 text = "Miss",
                 color = Color.gray,
-                textStyle = textStyle,
+                textStyle = new GUIStyle(textStyle),
             };
         }
 
@@ -189,7 +269,7 @@ public class GUIManager : MonoBehaviour9Bits {
                 buttonNote = buttonNote,
                 text =  "Bad!",
                 color = Color.gray,
-                textStyle = textStyle,
+                textStyle = new GUIStyle(textStyle),
             };
         }
 

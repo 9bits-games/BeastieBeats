@@ -35,16 +35,16 @@ public class ScoreManager : MonoBehaviour9Bits
     // Initial points of the emotionometer.
     public int InitialEmotionMeter = 500;
     // The amount of points for correctly play a note.
-    public int ScorePerGoodNote = 100;
+    public int ScorePerGoodNote = 50;
     // The amount of points lost for missplay a note.
-    public int ScorePerBadNote = 70;
+    public int ScorePerBadNote = 30;
     // The amount of points for let a note pass in the track without play it.
-    public int ScorePerNotPlayNote = 120;
+    public int ScorePerNotPlayNote = 40;
 
-    public int GoodComboStreak = 3;
-    public int CoolComboStreak = 7;
-    public int GreatComboStreak = 15;
-    public int AwesomeComboStreak = 20;
+    public int GoodComboStreak = 5;
+    public int CoolComboStreak = 10;
+    public int GreatComboStreak = 20;
+    public int AwesomeComboStreak = 40;
 
     public AudioClip GoodComboSound;
     public AudioClip CoolComboSound;
@@ -56,7 +56,7 @@ public class ScoreManager : MonoBehaviour9Bits
 
     private int comboLevel;
 
-    void Start() {
+    void Awake() {
         EmotionMeter = InitialEmotionMeter;
         comboCount = 0;
         comboLevel = 0;
@@ -84,7 +84,7 @@ public class ScoreManager : MonoBehaviour9Bits
 
     //Listener of OnNoteBadPlayed
     public void OnNoteBadPlayed(Note note, float playTime) {
-        TotalScore -= ScorePerBadNote;
+//        TotalScore -= ScorePerBadNote;
         EmotionMeter -= ScorePerBadNote;
         checkEmotionMeter();
         ComboCount = 0;
@@ -92,7 +92,7 @@ public class ScoreManager : MonoBehaviour9Bits
 
     //Listener of OnNoteNotPlayed
     public void OnNoteNotPlayed(Note note) {
-        TotalScore -= ScorePerNotPlayNote;
+//        TotalScore -= ScorePerNotPlayNote;
         EmotionMeter -= ScorePerNotPlayNote;
         checkEmotionMeter();
         ComboCount = 0;

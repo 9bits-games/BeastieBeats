@@ -19,6 +19,7 @@ namespace StageElements
 
         public virtual void updateStatus(float percentageToTarget) {
             this.percentageToTarget = percentageToTarget;
+//            Debug.Log("Perc " + percentageToTarget);
 
             State.updateStatus(percentageToTarget);
         }
