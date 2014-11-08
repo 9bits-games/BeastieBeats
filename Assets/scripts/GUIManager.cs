@@ -7,6 +7,8 @@ using System.Collections.Generic;
  * GUIManager Handles the graphical interface and its inputs.
  */
 public class GUIManager : MonoBehaviour9Bits {
+    public enum GUIState {Playing, Paused, Loose, Win};
+    public GUIState state;
 
     //The size of the board in screen percentage.
     public float bgSize = 0.4f;
@@ -37,7 +39,7 @@ public class GUIManager : MonoBehaviour9Bits {
 
     ScoreManager scoreManager;
     Commander commander;
-    MainSC mainSC;
+    MainSC mainSC; // TODO: Quitar dependencia y reemplazar por comunicación con Commander o Eventos.
 
     /**
      * Adds an effect that indicates that a note is near in the track.
@@ -99,19 +101,21 @@ public class GUIManager : MonoBehaviour9Bits {
     }
 
 	// Use this for initialization
-//	void Start () {}
+	void Start () {
+        state = GUIState.Playing;
+    }
 
 	// Update is called once per frame
     void Update () {
+        if (Input.GetButtonDown("Pause")) this.mainSC.Pause();
+        if (Input.GetButtonDown("Reset")) this.mainSC.Reset();
+
         Array.ForEach(buttonNotes, btn => btn.Update());
     }
 
 	void OnGUI () {
         //Thr rectangle of the the board
         Rect GUIRect = new Rect(0f, Screen.height * (1f - bgSize), Screen.width, Screen.height * bgSize);
-
-        //Draw the board
-//        GUI.Box(GUIRect, "");
 
         //Drawing the Buttons
         //Buttons size
@@ -140,7 +144,7 @@ public class GUIManager : MonoBehaviour9Bits {
 
         if (Event.current.type == EventType.MouseUp) {
             if (restRect.Contains(Event.current.mousePosition)) {
-                Application.LoadLevel(Application.loadedLevelName);
+                this.mainSC.Reset();
             }
 
             if (pauseRect.Contains(Event.current.mousePosition)) {
@@ -159,7 +163,8 @@ public class GUIManager : MonoBehaviour9Bits {
     private ButtonNote getButtonNote(Note note) {
         return Array.Find(buttonNotes, btn => btn.note == note);
     }
-	
+
+	//TODO: El tablero de botones debería estár en una clase aparte, junto con sus efectos y botones.
 	private class PlayFeedbackEffect {
         public static PlayFeedbackEffect WellPlayedEffect(ButtonNote buttonNote, GUIStyle textStyle) {
             return new PlayFeedbackEffect {

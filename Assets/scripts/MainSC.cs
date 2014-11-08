@@ -40,9 +40,7 @@ public class MainSC : SceneController {
         PlayNoteCommand.OnNotePlayed += OnNotePlayed;
     }
 	
-	void Update () {
-        if (Input.GetButtonDown("Pause")) Pause();
-	}
+	void Update () {}
 
     public void Pause() {
         if (paused) {
@@ -55,6 +53,10 @@ public class MainSC : SceneController {
             paused = true;
         }
         Debug.Log("Time scale " + Time.timeScale);
+    }
+
+    public void Reset() {
+        Application.LoadLevel(Application.loadedLevelName);
     }
 
     //When a note is played on the GUI we play it on the track.

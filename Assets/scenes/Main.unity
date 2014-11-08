@@ -7673,7 +7673,6 @@ GameObject:
   - 124: {fileID: 1530637950}
   - 81: {fileID: 1530637949}
   - 114: {fileID: 1530637954}
-  - 114: {fileID: 1530637955}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7764,18 +7763,6 @@ MonoBehaviour:
   hS: .100000001
   player: {fileID: 819370401}
   lookAtOffset: {x: 0, y: 0, z: 0}
---- !u!114 &1530637955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1530637948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c080dd7a2d324933abc5da4f6737083, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _wantedAspectRatio: 1.77777779
 --- !u!1 &1539301913
 GameObject:
   m_ObjectHideFlags: 0
@@ -8315,11 +8302,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb130e9f62dd74734aacbfcf5cbb417c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   bgSize: .349999994
   paddingH: .100000001
   marginTop: .100000001
   buttonSize: .100000001
   buttonImage: {fileID: 2800000, guid: 4d17040934df64e83848863e09c1f316, type: 3}
+  resetBtn: {fileID: 2800000, guid: 3aa10567a330b4184bddd386db015a13, type: 3}
+  pauseBtn: {fileID: 2800000, guid: 0d3ddc686a1854c24b4b7debd520243e, type: 3}
   noteAheadImage: {fileID: 2800000, guid: 3c10fceb9578d4efbbb2f9b372c5d0bf, type: 3}
   notePlayedFeedbackStyle:
     m_Name: 
