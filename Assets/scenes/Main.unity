@@ -4764,6 +4764,7 @@ MonoBehaviour:
   bgMusic: {fileID: 8300000, guid: dc5ff50b93bdb45d0bed245c9be4951e, type: 3}
   melody: {fileID: 8300000, guid: 03bfb87f12416441c94c907c01f01651, type: 3}
   errorSound: {fileID: 8300000, guid: b142a636f3ebe442981bde703962926b, type: 3}
+  autoPlay: 0
   lookAheadTime: .5
   timeTolerancy: .200000003
 --- !u!82 &1163405173

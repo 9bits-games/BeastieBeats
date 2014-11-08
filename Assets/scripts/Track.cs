@@ -36,6 +36,8 @@ public class Track : MonoBehaviour9Bits
     public AudioClip melody;
     // The audio effect of a note bad played
     public AudioClip errorSound;
+    // If true the track will auto play its notes.
+    public Boolean autoPlay = false;
 
     /* Seconds to look ahead for notes in the track.
      * If a Note is in Time + lookAheadTime the event NoteAhead is fired.
@@ -395,7 +397,7 @@ public class Track : MonoBehaviour9Bits
     // Update is called once per frame
     void Update () {
         if (isPlaying) {
-            AutoPlay();
+            if(autoPlay) AutoPlay();
             LookAheadNotes();
             CheckBackNotes();
         }

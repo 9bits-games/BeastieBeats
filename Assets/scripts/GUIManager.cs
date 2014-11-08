@@ -229,8 +229,8 @@ public class GUIManager : MonoBehaviour9Bits {
 
         //Only for debug:
 
-        GUI.Box(new Rect((Screen.width - 300)/2, 10, 300, 25), String.Format("T: {0}, E: {1}, C: {2}, Time: {3}, P: {4}%",
-            scoreManager.TotalScore, scoreManager.EmotionMeter, scoreManager.ComboCount, (int)track.Time, (int)track.PercentagePlayed));
+//        GUI.Box(new Rect((Screen.width - 300)/2, 10, 300, 25), String.Format("T: {0}, E: {1}, C: {2}, Time: {3}, P: {4}%",
+//            scoreManager.TotalScore, scoreManager.EmotionMeter, scoreManager.ComboCount, (int)track.Time, (int)track.PercentagePlayed));
 		
 	}
 
